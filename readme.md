@@ -1,10 +1,41 @@
-# garbage_collector
+# XiGC - Lightweight Garbage Collector
 
-A lightweight, efficient garbage collector written in C/C++ using low-level memory control with `mmap`. Designed to work seamlessly with high-level languages, this project demonstrates custom memory management by automatically reclaiming unused memory and simplifying resource handling.
+A lightweight, cross-language garbage collector written in C with bindings for C++, and Python. XiGC provides simple memory management to help prevent memory leaks in your applications.
 
 ## Features
 
-- **Custom Memory Allocation:** Uses `mmap`/`munmap` for direct memory control.
-- **Automatic Memory Reclamation:** Provides a foundation for building a garbage collector that reduces manual memory management.
-- **Cross-Language Integration:** Easily extendable for embedding in high-level language runtimes.
-- **Simple & Minimal:** A clean, easy-to-understand implementation for educational purposes and further enhancements.
+- Memory allocation tracking and automatic cleanup
+- Cross-language support (C, C++, Python)
+- Comprehensive error handling system
+- Dynamic memory container that grows as needed
+- Thread-safe memory operations
+- API for manual and automatic memory management
+
+## Architecture
+
+XiGC consists of several key components:
+
+1. **Memory Container**: Tracks allocated memory blocks and their status
+2. **Error Manager**: Provides detailed error reporting
+3. **Function API**: High-level interface for memory operations
+4. **Language Bindings**: C++ wrapper and Python FFI interface
+
+## API Overview
+
+### C API
+
+```c
+// Initialize the garbage collector
+int init_gc(_GC_memory_c **holder, errorm *error_stat);
+
+// Allocate memory through the garbage collector
+void *gc_alloc(errorm *error_stat, _GC_memory_c *memory_container, size_t size);
+
+// Free a specific memory block
+int gc_fr(errorm *error_stat, _GC_memory_c *memory_container, void *target);
+
+// Free all memory blocks managed by the garbage collector
+int gc_free_ev(errorm *error_stat, _GC_memory_c *memory_container);
+
+// Destroy the garbage collector instance
+int gc_destroy_api(errorm *error_stat, _GC_memory_c **memory_container);
