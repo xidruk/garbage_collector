@@ -26,22 +26,22 @@ GC consists of several key components:
 
 
 Initialize the garbage collector
-```
+```c
 int init_gc(_GC_memory_c **holder, errorm *error_stat);
 ```
 Allocate memory through the garbage collector
-```
+```c
 void *gc_alloc(errorm *error_stat, _GC_memory_c *memory_container, size_t size);
 ```
 Free a specific memory block
-```
+```c
 int gc_fr(errorm *error_stat, _GC_memory_c *memory_container, void *target);
 ```
 Free all memory blocks managed by the garbage collector
-```
+```c
 int gc_free_ev(errorm *error_stat, _GC_memory_c *memory_container);
 ```
 Destroy the garbage collector instance
-```
+```c
 int gc_destroy_api(errorm *error_stat, _GC_memory_c **memory_container);
 ```
